@@ -3,9 +3,90 @@ package com.Company.Tests;
 import org.testng.annotations.Test;
 
 import java.util.ArrayDeque;
+import java.util.Arrays;
 import java.util.Deque;
 
 public class Prac {
+
+    @Test
+    public void pairOfNumber() {
+
+        int[] arr = {1, 2, 3, 4, 7, 8, 9, 4, -2};
+        int target = 5, currentSum = 0, start = 0, last = arr.length - 1;
+
+        Arrays.sort(arr);
+        while (start < last) {
+            currentSum = arr[start] + arr[last];
+            if (currentSum > target) {
+                last--;
+            } else if (currentSum < target) {
+                start++;
+            } else {
+                System.out.println("pair => " + arr[start] + " , " + arr[last]);
+                start++;
+                last--;
+            }
+        }
+
+    }
+
+    @Test
+    public void LargestNumberLessThanNumber() {
+        int number = 153;
+        int numberNotRequired = 1;
+        while (String.valueOf(number).contains(String.valueOf(numberNotRequired))) {
+            number--;
+        }
+        System.out.println("required number ==> " + number);
+    }
+
+    @Test
+    public void secondLargest() {
+        int[] arr = {1, 4, 7, 8, 20, 3};
+        int first = 0, second = 0;
+
+        if (arr[0] > arr[1]) {
+            first = arr[0];
+            second = arr[1];
+        } else {
+            first = arr[1];
+            second = arr[0];
+        }
+
+        for (int i = 2; i < arr.length; i++) {
+            if (arr[i] > first) {
+                int temp = arr[i];
+                second = first;
+                first = temp;
+            } else if (first> arr[i] && arr[i]>second) {
+                second = arr[i];
+            }
+        }
+
+        System.out.println(second);
+    }
+
+    @Test
+    public void validParanthesis() {
+        
+
+    }
+
+    @Test
+    public void reverseTillPalindrome() {
+
+    }
+
+    @Test
+    public void armstrong() {
+
+    }
+
+    @Test
+    public void duplicate() {
+
+    }
+
     @Test
     public void reverseWithSpace() {
         String str = "i love my country.";
