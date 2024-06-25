@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-public class Practice {
+public class Prac {
     @Test
     public void reverseWithSpace() {
         String str = "i love my country.";
