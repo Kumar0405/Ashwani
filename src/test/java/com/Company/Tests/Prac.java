@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Deque;
+import java.util.Stack;
 
 public class Prac {
 
@@ -58,7 +59,7 @@ public class Prac {
                 int temp = arr[i];
                 second = first;
                 first = temp;
-            } else if (first> arr[i] && arr[i]>second) {
+            } else if (first > arr[i] && arr[i] > second) {
                 second = arr[i];
             }
         }
@@ -68,8 +69,28 @@ public class Prac {
 
     @Test
     public void validParanthesis() {
-        
+        String str = "({[]})";
+        Stack<Character> stack = new Stack<>();
+        char[] c = str.toCharArray();
 
+        for (int i = 0; i < c.length; i++) {
+            if (str.charAt(i) == '(' || str.charAt(i) == '{' || str.charAt(i) == '[') {
+                stack.push(str.charAt(i));
+            }
+        }
+
+        for (int i = 0; i < c.length; i++) {
+            if (
+                    str.charAt(i) == ')' && !stack.isEmpty() && stack.peek() == '(' ||
+                            str.charAt(i) == '}' && !stack.isEmpty() && stack.peek() == '{' ||
+                            str.charAt(i) == ']' && !stack.isEmpty() && stack.peek() == '['
+
+
+            ) {
+                stack.pop();
+            }
+        }
+        System.out.println("Valid Paramtheses ==> " + stack.isEmpty());
     }
 
     @Test
