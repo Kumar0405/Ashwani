@@ -6,6 +6,26 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class Practice {
+    @Test
+    public void reverseWithSpace() {
+        String str = "i love my country.";
+        char[] c = str.toCharArray();
+        int start = 0, last = c.length - 1;
+        for (int i = 0; i < c.length / 2; i++) {
+            if (c[i] == ' ') {
+                start++;
+            } else if (c[last] == ' ') {
+                last--;
+            } else {
+                char temp = c[start];
+                c[start] = c[last];
+                c[last] = temp;
+                start++;
+                last--;
+            }
+        }
+        System.out.println(new String(c));
+    }
 
     @Test
     public void reverse2() {
@@ -18,7 +38,7 @@ public class Practice {
             deque.push(c1);
         }
 
-        System.out.println("deque =>    "+deque);
+        System.out.println("deque =>    " + deque);
 
         for (int i = 0; i < c.length; i++) {
             sb.append(deque.pop());
