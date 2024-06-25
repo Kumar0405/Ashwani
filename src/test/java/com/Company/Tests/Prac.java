@@ -96,10 +96,23 @@ public class Prac {
     @Test
     public void reverseTillPalindrome() {
 
+
     }
 
     @Test
     public void armstrong() {
+        int number = 153, power = String.valueOf(number).length(), sum = 0, currentNumber = 1;
+
+        while (number>0){
+            int rem = number %10;
+            for (int i = 0; i < power; i++) {
+                currentNumber = currentNumber *rem;
+            }
+            sum = sum+currentNumber;
+            currentNumber = 1;
+            number = number/10;
+        }
+        System.out.println(sum);
 
     }
 
