@@ -2,10 +2,7 @@ package com.Company.Tests;
 
 import org.testng.annotations.Test;
 
-import java.util.ArrayDeque;
-import java.util.Arrays;
-import java.util.Deque;
-import java.util.Stack;
+import java.util.*;
 
 public class Prac {
 
@@ -103,21 +100,37 @@ public class Prac {
     public void armstrong() {
         int number = 153, power = String.valueOf(number).length(), sum = 0, currentNumber = 1;
 
-        while (number>0){
-            int rem = number %10;
+        while (number > 0) {
+            int rem = number % 10;
             for (int i = 0; i < power; i++) {
-                currentNumber = currentNumber *rem;
+                currentNumber = currentNumber * rem;
             }
-            sum = sum+currentNumber;
+            sum = sum + currentNumber;
             currentNumber = 1;
-            number = number/10;
+            number = number / 10;
         }
         System.out.println(sum);
-
     }
 
     @Test
     public void duplicate() {
+        String str = "Ashwani".toLowerCase();
+
+        Map<Character, Integer> map = new HashMap<>();
+
+        for (Character c : str.toCharArray()) {
+            if (map.containsKey(c)) {
+                map.put(c, map.get(c) + 1);
+            } else {
+                map.put(c, 1);
+            }
+        }
+        System.out.println(map);
+        for (Map.Entry<Character, Integer> m: map.entrySet()){
+            if(m.getValue()>1){
+                System.out.println("duplicate => "+m.getKey());
+            }
+        }
 
     }
 
