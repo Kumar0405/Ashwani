@@ -7,16 +7,76 @@ import java.util.*;
 public class Prac {
 
     @Test
-    public void maxValuesMany(){
+    public void minValueInMapWithMultipleValues() {
+        String str = "aaashwani iiis the best."
+                .replaceAll(" ", "")
+                .replaceAll("\\.", "");
 
+        int minValue = Integer.MAX_VALUE;
+
+        Map<Character, Integer> map = new HashMap<>();
+
+        for (char c1 : str.toCharArray()) {
+            if (map.containsKey(c1)) {
+                map.put(c1, map.get(c1) + 1);
+            } else {
+                map.put(c1, 1);
+            }
+        }
+
+        for (Map.Entry<Character, Integer> m : map.entrySet()) {
+            if (m.getValue() < minValue) {
+                minValue = m.getValue();
+            }
+        }
+        System.out.println(map);
+
+        for (Map.Entry<Character, Integer> m : map.entrySet()) {
+            if (m.getValue() == minValue) {
+                System.out.println(m.getKey() + " , " + m.getValue());
+            }
+        }
     }
 
     @Test
+    public void maxValuesMany() {
+        String str = "aaashwani iiis the best."
+                .replaceAll(" ", "")
+                .replaceAll("\\.", "");
+
+        Map<Character, Integer> map = new HashMap<>();
+
+        int maxValue = Integer.MIN_VALUE;
+
+        for (char c1 : str.toCharArray()) {
+            if (map.containsKey(c1)) {
+                map.put(c1, map.get(c1) + 1);
+            } else {
+                map.put(c1, 1);
+            }
+        }
+        System.out.println(map);
+
+        for (Map.Entry<Character, Integer> m1 : map.entrySet())
+            if (m1.getValue() > maxValue) {
+                maxValue = m1.getValue();
+            }
+
+        for (Map.Entry<Character, Integer> m1 : map.entrySet()) {
+            if (m1.getValue() == maxValue) {
+                System.out.println(m1.getKey() + " , " + m1.getValue());
+
+            }
+        }
+    }
+
+
+    @Test
     public void mostRepeatedChar() {
-        String str = "ashwani kumar is the best".replaceAll(" ", "");
+        String str = "aashwani kumar is the best".replaceAll(" ", "");
         char[] c = str.toCharArray();
         int maxValue = 0, minValue = 0;
-        char maxChar = 'm', minChar='m';
+        char maxChar = 'm', minChar = 'm';
 
         Map<Character, Integer> map = new HashMap<>();
         for (char c1 : c) {
@@ -28,14 +88,14 @@ public class Prac {
         }
         for (Map.Entry<Character, Integer> m1 : map.entrySet()) {
 
-            if(m1.getValue()>maxValue){
+            if (m1.getValue() > maxValue) {
                 maxValue = m1.getValue();
                 maxChar = m1.getKey();
             }
         }
 
         System.out.println(map);
-        System.out.println(maxChar +" , "+ maxValue);
+        System.out.println(maxChar + " , " + maxValue);
     }
 
     @Test
