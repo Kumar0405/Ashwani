@@ -7,6 +7,67 @@ import java.util.*;
 public class Prac {
 
     @Test
+    public void maxValuesMany(){
+
+    }
+
+    @Test
+    public void mostRepeatedChar() {
+        String str = "ashwani kumar is the best".replaceAll(" ", "");
+        char[] c = str.toCharArray();
+        int maxValue = 0, minValue = 0;
+        char maxChar = 'm', minChar='m';
+
+        Map<Character, Integer> map = new HashMap<>();
+        for (char c1 : c) {
+            if (map.containsKey(c1)) {
+                map.put(c1, map.get(c1) + 1);
+            } else {
+                map.put(c1, 1);
+            }
+        }
+        for (Map.Entry<Character, Integer> m1 : map.entrySet()) {
+
+            if(m1.getValue()>maxValue){
+                maxValue = m1.getValue();
+                maxChar = m1.getKey();
+            }
+        }
+
+        System.out.println(map);
+        System.out.println(maxChar +" , "+ maxValue);
+    }
+
+    @Test
+    public void uniqueArray() {
+        int[] arr = {1, 2, 3, 5, 6, 1, 2, 3, 4, 5};
+        List<Integer> uniqueList = new ArrayList<>();
+
+        for (int a : arr) {
+            if (!(uniqueList.contains(a))) {
+                uniqueList.add(a);
+            }
+        }
+        System.out.println("unique-> " + uniqueList);
+
+    }
+
+    @Test
+    public void findMaxSumInArray() {
+        int[] arr = {1, 5, -1, 6, -3, 7, -4};
+        int currentSum = 0, globalSum = Integer.MIN_VALUE;
+
+        for (int i = 0; i < arr.length; i++) {
+            currentSum = Math.max(arr[i], currentSum + arr[i]);
+
+            if (currentSum > globalSum) {
+                globalSum = currentSum;
+            }
+        }
+        System.out.println("max sum => " + globalSum);
+    }
+
+    @Test
     public void pairOfNumber() {
 
         int[] arr = {1, 2, 3, 4, 7, 8, 9, 4, -2};
@@ -126,9 +187,9 @@ public class Prac {
             }
         }
         System.out.println(map);
-        for (Map.Entry<Character, Integer> m: map.entrySet()){
-            if(m.getValue()>1){
-                System.out.println("duplicate => "+m.getKey());
+        for (Map.Entry<Character, Integer> m : map.entrySet()) {
+            if (m.getValue() > 1) {
+                System.out.println("duplicate => " + m.getKey());
             }
         }
 
