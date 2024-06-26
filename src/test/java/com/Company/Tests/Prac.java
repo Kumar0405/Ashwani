@@ -1,17 +1,44 @@
 package com.Company.Tests;
 
-import io.reactivex.rxjava3.core.Maybe;
 import org.testng.annotations.Test;
 
 import java.util.*;
 
 public class Prac {
     @Test
+    public void commonTwoArray() {
+        String[][] arr = {
+                {"ash", "ashwa"},
+                {"as", "ah"}
+        };
+        int row= arr.length, column = arr[0].length;
+
+        Set<Character> refSet= new HashSet<>();
+        for (char c1 : arr[0][0].toCharArray()){
+            refSet.add(c1);
+        }
+
+        for (int i = 0; i < row; i++) {
+            Set<Character> currentSet = new HashSet<>();
+
+            for (int j = 0; j < column; j++) {
+                String word = arr[i][j];
+                for (char c1: word.toCharArray()){
+                    currentSet.add(c1);
+                }
+                refSet.retainAll(currentSet);
+            }
+        }
+
+        System.out.println(refSet);
+    }
+
+    @Test
     public void commonChars() {
         String[] str = {"ashwani", "ash", "ashwa"};
         Set<Character> referenceSet = new HashSet<>();
 
-        for (char c1 : str[0].toCharArray()){
+        for (char c1 : str[0].toCharArray()) {
             referenceSet.add(c1);
         }
         System.out.println(referenceSet);
@@ -19,13 +46,14 @@ public class Prac {
         for (int i = 1; i < str.length; i++) {
             String currentWord = str[i];
             Set<Character> currentSet = new HashSet<>();
-            for(char c1: currentWord.toCharArray()){
+            for (char c1 : currentWord.toCharArray()) {
                 currentSet.add(c1);
             }
             referenceSet.retainAll(currentSet);
         }
 
-        System.out.println("common letters are => "+referenceSet);
+        System.out.println("common letters are => " + referenceSet);
+
         List<Character> list = new ArrayList<>(referenceSet);
         Collections.sort(list);
         System.out.println("sorted => " + list);
@@ -114,8 +142,8 @@ public class Prac {
     public void mostRepeatedChar() {
         String str = "aashwani kumar is the best".replaceAll(" ", "");
         char[] c = str.toCharArray();
-        int maxValue = 0, minValue = 0;
-        char maxChar = 'm', minChar = 'm';
+        int maxValue = 0;
+        char maxChar = 'm';
 
         Map<Character, Integer> map = new HashMap<>();
         for (char c1 : c) {
@@ -170,7 +198,7 @@ public class Prac {
     public void pairOfNumber() {
 
         int[] arr = {1, 2, 3, 4, 7, 8, 9, 4, -2};
-        int target = 5, currentSum = 0, start = 0, last = arr.length - 1;
+        int target = 5, currentSum, start = 0, last = arr.length - 1;
 
         Arrays.sort(arr);
         while (start < last) {
@@ -201,7 +229,7 @@ public class Prac {
     @Test
     public void secondLargest() {
         int[] arr = {1, 4, 7, 8, 20, 3};
-        int first = 0, second = 0;
+        int first, second;
 
         if (arr[0] > arr[1]) {
             first = arr[0];
