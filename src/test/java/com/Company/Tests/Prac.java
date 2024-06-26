@@ -1,10 +1,49 @@
 package com.Company.Tests;
 
+import io.reactivex.rxjava3.core.Maybe;
 import org.testng.annotations.Test;
 
 import java.util.*;
 
 public class Prac {
+    @Test
+    public void commonChars() {
+        String[] str = {"ashwani", "ash", "ashwa"};
+        Set<Character> referenceSet = new HashSet<>();
+
+        for (char c1 : str[0].toCharArray()){
+            referenceSet.add(c1);
+        }
+        System.out.println(referenceSet);
+
+        for (int i = 1; i < str.length; i++) {
+            String currentWord = str[i];
+            Set<Character> currentSet = new HashSet<>();
+            for(char c1: currentWord.toCharArray()){
+                currentSet.add(c1);
+            }
+            referenceSet.retainAll(currentSet);
+        }
+
+        System.out.println("common letters are => "+referenceSet);
+        List<Character> list = new ArrayList<>(referenceSet);
+        Collections.sort(list);
+        System.out.println("sorted => " + list);
+    }
+
+    @Test
+    public void pronicNumber() {
+        int number = 30;
+        boolean bool = false;
+
+        for (int i = 0; i < Math.sqrt(number); i++) {
+            if (i * (i + 1) == number) {
+                System.out.println(i + " X " + (i + 1) + " = " + number);
+                bool = true;
+            }
+        }
+        System.out.println("pronic number => " + bool);
+    }
 
     @Test
     public void minValueInMapWithMultipleValues() {
