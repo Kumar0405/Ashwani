@@ -5,16 +5,86 @@ import org.testng.annotations.Test;
 import java.util.*;
 
 public class Prac {
+
+    @Test
+    public void sortByFrequency() {
+        String str = "hjkhf dnwbfjkdbvjklwdqbjkvwb".replaceAll(" ", "");
+        char[] chars = str.toCharArray();
+
+        Map<Character, Integer> map = new HashMap<>();
+        for (char c1 : chars) {
+            if (map.containsKey(c1)) {
+                map.put(c1, map.get(c1) + 1);
+            } else {
+                map.put(c1, 1);
+            }
+        }
+        System.out.println(map);
+
+        List<Character> list = new ArrayList<>(map.keySet());
+        System.out.println(list);
+
+        Collections.sort(list, (a, b) -> map.get(b) - map.get(a));
+
+        List<Character> newList = new ArrayList<>();
+
+        for (char c1 : list){
+            for (int i = 0; i < map.get(c1); i++) {
+                newList.add(c1);
+            }
+        }
+        System.out.println(newList);
+    }
+
+    @Test
+    public void repChars() {
+        String[] strs = {"ashwani ", "dinesh ", "vivek "};
+        Set<Character> refChars = new HashSet<>();
+        for (char c1 : strs[0].replaceAll(" ", "").toCharArray()) {
+            refChars.add(c1);
+        }
+
+        for (int i = 1; i < strs.length; i++) {
+            char[] current = strs[i].replaceAll(" ", "").toCharArray();
+            Set<Character> currentRef = new HashSet<>();
+            for (char c2 : current) {
+                currentRef.add(c2);
+            }
+            refChars.retainAll(currentRef);
+        }
+
+        System.out.println(refChars);
+    }
+
+    @Test
+    public void minAbsoluteDifference() {
+        int[] arr = {-1, 4, -10, 5, 7, 8, 9};
+        int max = Integer.MAX_VALUE;
+
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr.length; j++) {
+                int currentDiff = Math.abs(arr[i] - arr[j]);
+                if (i != j) {
+                    if (currentDiff < max) {
+                        max = currentDiff;
+                        System.out.println(max);
+                    }
+                }
+            }
+        }
+        System.out.println(max);
+    }
+
     @Test
     public void commonTwoArray() {
         String[][] arr = {
                 {"ash", "ashwa"},
                 {"as", "ah"}
         };
-        int row= arr.length, column = arr[0].length;
+        int row = arr.length, column = arr[0].length;
 
-        Set<Character> refSet= new HashSet<>();
-        for (char c1 : arr[0][0].toCharArray()){
+        Set<Character> refSet = new HashSet<>();
+        for (char c1 : arr[0][0].toCharArray()) {
             refSet.add(c1);
         }
 
@@ -23,7 +93,7 @@ public class Prac {
 
             for (int j = 0; j < column; j++) {
                 String word = arr[i][j];
-                for (char c1: word.toCharArray()){
+                for (char c1 : word.toCharArray()) {
                     currentSet.add(c1);
                 }
                 refSet.retainAll(currentSet);
